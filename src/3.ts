@@ -1,13 +1,12 @@
-/*
-  Ви створюєте гру, де є персонажі з різними ролями.
-  Зараз ви працюєте над класом Wizard, який має реалізовувати два інтерфейси - ICharacter та ISpellCaster.
+interface ICharacter {
+name: string,
+level: number,
+introduce(phrase: string): void,
+}
 
-  Визначте інтерфейси ICharacter та ISpellCaster так, щоб вони відповідали вимогам класу Wizard. 
-  Інтерфейс ICharacter повинен включати властивості name і level, і навіть метод introduce і levelUp. 
-  Інтерфейс ISpellCaster повинен включати метод castSpell.
-*/
-
-// реалізація класу Wizard
+interface ISpellCaster {
+  castSpell(): void,
+}
 class Wizard implements ICharacter, ISpellCaster {
   constructor(public name: string, public level: number) {
     if (this.level < 1) {
@@ -15,15 +14,15 @@ class Wizard implements ICharacter, ISpellCaster {
     }
   }
 
-  introduce(phrase: string): void {
+  introduce(phrase: string) {
     console.log(phrase + ', ' + this.name);
   }
 
-  castSpell(): void {
+  castSpell() {
     console.log('Casting a spell, behold my power!');
   }
 
-  levelUp(): void {
+  levelUp() {
     this.level++;
     console.log(`Level up! New level is ${this.level}`);
   }
@@ -35,5 +34,5 @@ const wizard = new Wizard('Merlin', 15);
 wizard.introduce('I am the mighty wizard');
 wizard.castSpell();
 wizard.levelUp();  // Level up! New level is 16
-
+console.log(wizard.levelUp())
 export {};
